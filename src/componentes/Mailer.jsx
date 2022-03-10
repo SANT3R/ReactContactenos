@@ -1,15 +1,23 @@
 import React from 'react';
 import emailjs from '@emailjs/browser';
+import swal from 'sweetalert';
 
 export const Mailer = () => {
-
     const sendEmail = (event) => {
         event.preventDefault();
 
         emailjs.sendForm('service_pjjhew7', 'template_70tungp', event.target, 'MS4kY9iPKY9IHG1Uu')
         .then(response => {
           console.log(response)
-          
+          if(response.text==="OK"){
+            swal({
+              title: "¡¡¡MENSAJE ENVIADO!!!",
+              text: "El mensaje fue enviado con exito!",
+              icon: "success",
+              button: "Aceptar",
+              timer: "5000"
+            });
+          }
         })
           
         .catch(error => console.log(error))
